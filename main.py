@@ -73,10 +73,14 @@ try:
 
             # posição central para decidir região
             cx = (x1 + x2) / 2
-            if cx < width / 3:
+            if cx < (width / 5):
                 obj_region = 'à esquerda'
-            elif cx < (2 * width / 3):
+            elif cx < (width / 2.5):
+                obj_region = 'frente-esquerda'
+            elif cx < (3 * width / 5):
                 obj_region = 'à frente'
+            elif cx < (4 * width / 5):
+                obj_region = 'frente-direita'
             else:
                 obj_region = 'à direita'
 
