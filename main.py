@@ -114,10 +114,8 @@ try:
         detected_objs.sort(key=lambda d: d['fraction'], reverse=True)
         for obj in detected_objs[:max_objects_to_speak]:
             now = time.time()
-
             # cooldown variável: mais próximo, fala mais rápido
             cooldown = base_cooldown * (1 - min(obj['fraction']/0.5,0.9))
-
             key = (obj['cls_name'], obj['region'])
 
             if key not in last_spoken or now - last_spoken[key] > cooldown:
