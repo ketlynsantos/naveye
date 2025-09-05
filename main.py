@@ -4,6 +4,7 @@ import pyttsx3
 import time
 import threading
 import queue
+from translations import class_translation
 
 # Configurações de prioridade
 priority_classes = ['person', 'car', 'bicycle', 'dog', 'motorcycle', 'bus', 'stop sign', 'cat', 'train', 'boat', 'traffic light', 'chair', 'couch', 'bed', 'bench', 'table', 'backpack', 'suitcase']
@@ -119,7 +120,8 @@ try:
             key = (obj['cls_name'], obj['region'])
 
             if key not in last_spoken or now - last_spoken[key] > cooldown:
-                text = f'{obj['cls_name']} {obj['region']}'
+                translate_cls_name = class_translation.get(obj['cls_name'])
+                text = f'{translate_cls_name} {obj['region']}'
                 tts_queue.put(text)
                 last_spoken[key] = now
 

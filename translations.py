@@ -1,0 +1,20 @@
+class_translation = {
+    'person': 'pessoa',
+    'car': 'carro',
+    'bicycle': 'bicicleta',
+    'dog': 'cachorro',
+    'motorcycle': 'moto',
+    'bus': 'ônibus',
+    'stop sign': 'placa de pare',
+    'cat': 'gato',
+    'train': 'trem',
+    'boat': 'barco',
+    'traffic light': 'semáforo',
+    'chair': 'cadeira',
+    'couch': 'sofá',
+    'bed': 'cama',
+    'bench': 'banco',
+    'table': 'mesa',
+    'backpack': 'mochila',
+    'suitcase': 'mala'
+}
