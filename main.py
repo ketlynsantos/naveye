@@ -6,7 +6,7 @@ import threading
 import queue
 
 # Configurações de prioridade
-priority_classes = ['person', 'car', 'bicycle', 'dog', 'motorcycle']
+priority_classes = ['person', 'car', 'bicycle', 'dog', 'motorcycle', 'bus', 'stop sign', 'cat', 'train', 'boat', 'traffic light', 'chair', 'couch', 'bed', 'bench', 'table', 'backpack', 'suitcase']
 min_confidence = 0.5
 max_objects_to_speak = 3
 base_cooldown = 5 # segundos
