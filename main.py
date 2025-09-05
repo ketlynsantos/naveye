@@ -63,7 +63,7 @@ try:
         # Seleciona somente o objeto "mais próximo" (maior fração de área)
         closest_obj = None
         closest_fraction = 0.0
-        closest_box = None
+        region = None
 
         for box, cls_id, conf in zip(results.boxes.xyxy, results.boxes.cls, results.boxes.conf):
             x1, y1, x2, y2 = box.int().tolist()
@@ -71,11 +71,20 @@ try:
             fraction = area / frame_area
             cls_name = results.names[int(cls_id)]
 
+            # posição central para decidir região
+            cx = (x1 + x2) / 2
+            if cx < width / 3:
+                obj_region = 'à esquerda'
+            elif cx < (2 * width / 3):
+                obj_region = 'à frente'
+            else:
+                obj_region = 'à direita'
+
             # guarda o maior
             if fraction > closest_fraction:
                 closest_fraction = fraction
                 closest_obj = cls_name
-                closest_box = (x1, y1, x2, y2)
+                region = obj_region
 
         # desenha boxes (opcional: todos ou só o mais próximo)
         for box, cls_id, conf in zip(results.boxes.xyxy, results.boxes.cls, results.boxes.conf):
@@ -89,7 +98,8 @@ try:
         if closest_obj and closest_fraction > near_threshold:
             # respeita cooldown por classe
             if closest_obj not in last_spoken or now - last_spoken[closest_obj] > cooldown:
-                tts_queue.put(f"{closest_obj} próximo")
+                text = f'{closest_obj} {region}'
+                tts_queue.put(text)
                 last_spoken[closest_obj] = now
 
         cv2.imshow('YOLO + Voz', frame)
